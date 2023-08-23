@@ -18,6 +18,21 @@ HW fourteen API main
   :show-inheritance:
 
 
+HW fourteen config Settings
+===========================
+.. automodule:: src.conf.setting
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+
+HW fourteen API repository Contacts
+===================================
+.. automodule:: src.repository.contacts
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
 HW fourteen API repository Notes
 =================================
 .. automodule:: src.repository.notes
@@ -28,13 +43,6 @@ HW fourteen API repository Notes
 HW fourteen API repository Users
 ================================
 .. automodule:: src.repository.users
-  :members:
-  :undoc-members:
-  :show-inheritance:
-
-HW fourteen API repository Contacts
-===================================
-.. automodule:: src.repository.contacts
   :members:
   :undoc-members:
   :show-inheritance:

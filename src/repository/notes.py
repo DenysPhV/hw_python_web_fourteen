@@ -9,14 +9,14 @@ async def create(body: NoteModel, db: AsyncSession):
     """
         Creates a new note for a specific user.
 
-        :param body: The data for the note to create.
-        :type body: NoteModel
-        :param user: The user to create the note for.
-        :type user: User
-        :param db: The database session.
-        :type db: Session
-        :return: The newly created note.
-        :rtype: Note
+           :param body: all parameters for new note
+           :type body: NoteModel
+           :param user: current user - contact owner
+           :type user: User
+           :param db: current session to db
+           :type db: Session
+           :return: Note | None
+           :rtype: Note | None
         """
     note = Note(**body.model_dump())
     db.add(note)
@@ -26,42 +26,50 @@ async def create(body: NoteModel, db: AsyncSession):
 
 
 async def get_all(user: User, db: AsyncSession):
+    """
+       get notes from current user
+
+       :param user: current user - contact owner
+       :type user: User
+       :param db: current session to db
+       :type db: Session
+       :return: Note
+       :rtype: List
+       """
     notes = db.query(Note).filter(Note.user_id == user.id).all()
     return notes
 
 
 async def get_one(note_id, user: User, db: AsyncSession):
     """
-        Show a single note with the specified ID for a specific user.
+       get note by db id
 
-        :param note_id: The ID of the note to update.
-        :type note_id: int
-        :param body: The updated data for the note.
-        :type body: NoteUpdate
-        :param user: The user to update the note for.
-        :type user: User
-        :param db: The database session.
-        :type db: Session
-        :return: The updated note, or None if it does not exist.
-        :rtype: Note | None
-        """
+       :param note_id: id to find
+       :type note_id: int
+       :param user: current user - contact owner
+       :type user: User
+       :param db: current session to db
+       :type db: Session
+       :return: Note | None
+       :rtype: Note | None
+       """
     note = await db.query(Note).filter(and_(Note.user_id == user.id, Note.id == note_id)).first()
     return note
 
 
 async def update(note_id, body: NoteModel, user: User, db: AsyncSession):
     """
-        Updates a single note with the specified ID for a specific user.
+        Update note, find by db id
 
-        :param note_id: The ID of the note to update.
+        :param note_id: id to find
         :type note_id: int
-        :param body: The updated data for the note.
-        :type body: NoteUpdate
-        :param user: The user to update the note for.
+        :param body: all new parameters for note update
+        :type body: NoteModel
+        :param user: current user - contact owner
         :type user: User
-        :param db: The database session.
+        :param db: current session to db
         :type db: Session
-        :return: The updated note, or None if it does not exist.
+        :return: Note | None
         :rtype: Note | None
         """
     note = await get_one(note_id, user, db)
@@ -73,15 +81,15 @@ async def update(note_id, body: NoteModel, user: User, db: AsyncSession):
 
 async def delete(note_id, user: User, db: AsyncSession):
     """
-        Removes a single note with the specified ID for a specific user.
+        delete note find note by db id
 
-        :param note_id: The ID of the note to remove.
+        :param note_id: id to find
         :type note_id: int
-        :param user: The user to remove the note for.
+        :param user: current user - contact owner
         :type user: User
-        :param db: The database session.
+        :param db: current session to db
         :type db: Session
-        :return: The removed note, or None if it does not exist.
+        :return: Note | None
         :rtype: Note | None
         """
     note = await get_one(note_id, user, db)
