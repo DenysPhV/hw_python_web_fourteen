@@ -20,8 +20,8 @@ async def create(body: NoteModel, db: AsyncSession):
         """
     note = Note(**body.model_dump())
     db.add(note)
-    await db.commit()
-    await db.refresh(note)
+    db.commit()
+    db.refresh(note)
     return note
 
 
@@ -72,7 +72,7 @@ async def update(note_id, body: NoteModel, user: User, db: AsyncSession):
         :return: Note | None
         :rtype: Note | None
         """
-    note = await get_one(note_id, user, db)
+    note = get_one(note_id, user, db)
     if note:
         note.text = body.text
         await db.commit()
@@ -94,6 +94,6 @@ async def delete(note_id, user: User, db: AsyncSession):
         """
     note = await get_one(note_id, user, db)
     if note:
-        await db.delete(note)
-        await db.commit()
+        db.delete(note)
+        db.commit()
     return note

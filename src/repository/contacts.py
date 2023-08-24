@@ -1,4 +1,6 @@
 from datetime import date, datetime
+from typing import List
+
 from sqlalchemy import and_
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -6,7 +8,7 @@ from src.schemas import ContactModel
 from src.database.models import Contact, User
 
 
-async def create(body: ContactModel, db: AsyncSession):
+async def create(body: ContactModel, user: User, db: AsyncSession) -> Contact:
     """
         Create a new contact
 
@@ -19,14 +21,14 @@ async def create(body: ContactModel, db: AsyncSession):
         :return: Contact | None
         :rtype: Contact | None
         """
-    contact = Contact(**body.model_dump())
-    db.add(contact)
-    await db.commit()
-    await db.refresh(contact)
-    return contact
+    new_contact = Contact(**body.model_dump(), user_id=user.id)
+    db.add(new_contact)
+    db.commit()
+    db.refresh(new_contact)
+    return new_contact
 
 
-async def get_all(user: User, db: AsyncSession):
+async def get_all(skip: int, limit: int, user: User, db: AsyncSession) -> List[Contact]:
     """
         get part of contact from current user
 
@@ -41,7 +43,7 @@ async def get_all(user: User, db: AsyncSession):
         :return: part of contact from current user
         :rtype: List
         """
-    contacts = db.query(Contact).filter(Contact.user_id == user.id).all()
+    contacts = db.query(Contact).filter(Contact.user_id == user.id).offset(skip).limit(limit).all()
     return contacts
 
 
@@ -83,7 +85,7 @@ async def update(contact_id, body: ContactModel, user: User, db: AsyncSession):
         contact.last_name = body.last_name
         contact.email = body.email
         contact.birthday = body.birthday
-        await db.commit()
+        db.commit()
     return contact
 
 
@@ -102,8 +104,8 @@ async def delete(contact_id, user: User, db: AsyncSession):
         """
     contact = await get_one(contact_id, user, db)
     if contact:
-        await db.delete(contact)
-        await db.commit()
+        db.delete(contact)
+        db.commit()
     return contact
 
 
