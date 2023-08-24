@@ -13,8 +13,8 @@ async def create(body: NoteModel, db: AsyncSession):
            :type body: NoteModel
            :param user: current user - contact owner
            :type user: User
-           :param db: current session to db
-           :type db: Session
+           :param db: current async session to db
+           :type db: AsyncSession
            :return: Note | None
            :rtype: Note | None
         """
@@ -31,8 +31,8 @@ async def get_all(user: User, db: AsyncSession):
 
        :param user: current user - contact owner
        :type user: User
-       :param db: current session to db
-       :type db: Session
+       :param db: current async session to db
+       :type db: AsyncSession
        :return: Note
        :rtype: List
        """
@@ -48,8 +48,8 @@ async def get_one(note_id, user: User, db: AsyncSession):
        :type note_id: int
        :param user: current user - contact owner
        :type user: User
-       :param db: current session to db
-       :type db: Session
+       :param db: current async session to db
+       :type db: AsyncSession
        :return: Note | None
        :rtype: Note | None
        """
@@ -67,8 +67,8 @@ async def update(note_id, body: NoteModel, user: User, db: AsyncSession):
         :type body: NoteModel
         :param user: current user - contact owner
         :type user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Note | None
         :rtype: Note | None
         """
@@ -87,8 +87,8 @@ async def delete(note_id, user: User, db: AsyncSession):
         :type note_id: int
         :param user: current user - contact owner
         :type user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Note | None
         :rtype: Note | None
         """

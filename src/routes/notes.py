@@ -18,8 +18,8 @@ async def get_all(cur_user: User = Depends(auth.get_current_user), db: AsyncSess
 
         :param cur_user: current user - note owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: all notes in database for current user
         :rtype: List
         """
@@ -36,8 +36,8 @@ async def create(body: NoteModel, cur_user: User = Depends(auth.get_current_user
         :type body: NoteModel
         :param cur_user: current user - note owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Note | None
         :rtype: Note | None
         """
@@ -55,8 +55,8 @@ async def get_one(contact_id: int = Path(ge=1), cur_user: User = Depends(auth.ge
        :type contact_id: int
        :param cur_user: current user - note owner
        :type cur_user: User
-       :param db: current session to db
-       :type db: Session
+       :param db: current async session to db
+       :type db: AsyncSession
        :return: Note | None
        :rtype: Note | None
        """
@@ -78,8 +78,8 @@ async def update(body: NoteModel, contact_id: int = Path(ge=1), cur_user: User =
         :type contact_id: int
         :param cur_user: current user - note owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Note | None
         :rtype: Note | None
         """
@@ -93,14 +93,14 @@ async def update(body: NoteModel, contact_id: int = Path(ge=1), cur_user: User =
 async def delete(contact_id: int = Path(ge=1), cur_user: User = Depends(auth.get_current_user),
                  db: AsyncSession = Depends(get_db)):
     """
-        remove note contact by db id
+        remove note contact by db idw
 
         :param contact_id: id to find
         :type contact_id: int
         :param cur_user: current user - note owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Note | None
         :rtype: Note | None
         """

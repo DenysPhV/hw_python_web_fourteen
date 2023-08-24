@@ -37,8 +37,8 @@ async def update_avatar_user(file: UploadFile = File(), cur_user: User = Depends
         :type file: str
         :param cur_user: current user - contact owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: user | None
         :rtype: User | None
         """

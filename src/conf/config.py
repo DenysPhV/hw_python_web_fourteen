@@ -13,12 +13,12 @@ class Settings(BaseSettings):
     redis_host: str = 'localhost'
     redis_port: int = 6379
     origins: str = "origins"
-    # cloudinary_name: str
-    # cloudinary_api_key: str
-    # cloudinary_api_secret: str
+    cloudinary_name: str = "cloudinary name"
+    cloudinary_api_key: str = "api key"
+    cloudinary_api_secret: str = "api secret"
 
     class Config:
-        env_file = ".env"
+        env_file = "*.env"
         env_file_encoding = "utf-8"
 
 

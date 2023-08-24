@@ -14,8 +14,8 @@ async def create(body: ContactModel, db: AsyncSession):
         :type body: ContactModel
         :param user: current user - contact owner
         :type user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact | None
         :rtype: Contact | None
         """
@@ -36,8 +36,8 @@ async def get_all(user: User, db: AsyncSession):
         :type limit: int
         :param user: current user - contact owner
         :type user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: part of contact from current user
         :rtype: List
         """
@@ -53,8 +53,8 @@ async def get_one(contact_id, user: User, db: AsyncSession):
         :type contact_id: int
         :param user: current user - contact owner
         :type user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact | None
         :rtype: Contact | None
         """
@@ -72,8 +72,8 @@ async def update(contact_id, body: ContactModel, user: User, db: AsyncSession):
         :type body: ContactModel
         :param user: current user - contact owner
         :type user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact | None
         :rtype: Contact | None
         """
@@ -95,8 +95,8 @@ async def delete(contact_id, user: User, db: AsyncSession):
         :type contact_id: int
         :param user: current user - contact owner
         :type user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact | None
         :rtype: Contact | None
         """
@@ -115,8 +115,8 @@ async def find_by_name(contact_name, user: User, db: AsyncSession):
         :type contact_name: str
         :param user: current user - contact owner
         :type user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact | None
         :rtype: Contact | None
         """
@@ -132,8 +132,8 @@ async def find_by_lastname(lastname, user: User, db: AsyncSession):
         :type lastname: str
         :param user: current user - contact owner
         :type user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact | None
         :rtype: Contact | None
         """
@@ -149,8 +149,8 @@ async def find_by_email(email, user: User, db: AsyncSession):
           :type email: str
           :param user: current user - contact owner
           :type user: User
-          :param db: current session to db
-          :type db: Session
+          :param db: current async session to db
+          :type db: AsyncSession
           :return: Contact | None
           :rtype: Contact | None
           """
@@ -164,8 +164,8 @@ async def find_birthday7day(user: User, db: AsyncSession):
 
         :param user: current user - contact owner
         :type user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: contact with birthday next 7 days
         :rtype: List
         """

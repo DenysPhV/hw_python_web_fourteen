@@ -10,8 +10,8 @@ async def get_user_by_email(email: str, db: AsyncSession) -> User:
 
         :param email: user's email in db
         :type email: str
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: User | None
         :rtype: User | None
         """
@@ -24,8 +24,8 @@ async def create_user(body: UserModel, db: AsyncSession) -> User:
 
         :param body: all field for new user
         :type body: UserModel
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: User | None
         :rtype: User | None
         """
@@ -42,8 +42,8 @@ async def confirmed_email(email: str, db: AsyncSession) -> None:
 
         :param email: user's email in db
         :type email: str
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: None if user is not confirmed
         :rtype: None
         """
@@ -60,8 +60,8 @@ async def update_token(user: User, token: str | None, db: AsyncSession) -> None:
         :type user: UserModel
         :param token: old token
         :type token: str
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: None
         :rtype: None
         """
@@ -77,8 +77,8 @@ async def update_avatar(email, url: str, db: AsyncSession) -> User:
         :type email: UserModel
         :param url: url for avatar image
         :type url: str
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: User | None
         :rtype: User | None
         """

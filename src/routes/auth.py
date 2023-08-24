@@ -25,8 +25,8 @@ async def signup(body: UserModel, background_task: BackgroundTasks, request: Req
         :type background_tasks: BackgroundTasks
         :param request: incoming
         :type request: Request
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: new user
         :rtype: dict
         """
@@ -48,8 +48,8 @@ async def login(body: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = 
 
         :param body: password form data
         :type body: OAuth2PasswordRequestForm
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: token JWT
         :rtype: dict
         """
@@ -74,8 +74,8 @@ async def refresh_token(credentials: HTTPAuthorizationCredentials = Security(sec
 
         :param credentials: data with old token
         :type credentials: HTTPAuthorizationCredentials
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: token JWT
         :rtype: dict
         """
@@ -94,12 +94,6 @@ async def refresh_token(credentials: HTTPAuthorizationCredentials = Security(sec
     return {"access_token": access_token, "refresh_token": refresh_token, "token_type": "bearer"}
 
 
-@router.get("/{username}")
-async def refresh_token(username: str, db: AsyncSession = Depends(get_db)):
-    print(f"{username} open uor email")
-    return RedirectResponse("http://localhost:8000/static/one.png")
-
-
 @router.get("/confirmed_email/{token}")
 async def confirmed_email(token: str, db: AsyncSession = Depends(get_db)):
     """
@@ -107,8 +101,8 @@ async def confirmed_email(token: str, db: AsyncSession = Depends(get_db)):
 
         :param token: user token
         :type token: str
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: token JWT
         :rtype: dict
         """
@@ -134,8 +128,8 @@ async def request_email(body: RequestEmail, background_tasks: BackgroundTasks, r
         :type background_tasks: BackgroundTasks
         :param request: incoming request
         :type request: Request
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: new user
         :rtype: dict
         """

@@ -23,8 +23,8 @@ async def get_all(cur_user: User = Depends(auth.get_current_user), db: AsyncSess
         :type limit: int
         :param cur_user: current user - contact owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact
         :rtype: Contact
         """
@@ -42,8 +42,8 @@ async def create(body: ContactModel, cur_user: User = Depends(auth.get_current_u
         :type body: ContactModel
         :param cur_user: current user - note owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact
         :rtype: Contact
         """
@@ -65,8 +65,8 @@ async def get_one(contact_id: int = Path(ge=1), cur_user: User = Depends(auth.ge
         :type contact_id: int
         :param cur_user: current user - contact owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact
         :rtype: Contact
         """
@@ -88,8 +88,8 @@ async def update(body: ContactModel, contact_id: int = Path(ge=1), cur_user: Use
         :type contact_id: int
         :param cur_user: current user - contact owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Note | None
         :rtype: Note | None
         """
@@ -109,8 +109,8 @@ async def delete(contact_id: int = Path(ge=1), cur_user: User = Depends(auth.get
         :type contact_id: int
         :param cur_user: current user - contact owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact | None
         :rtype: Contact | None
         """
@@ -130,8 +130,8 @@ async def find_by_name(contact_name: str, cur_user: User = Depends(auth.get_curr
         :type contact_name: str
         :param cur_user: current user - contact owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact | None
         :rtype: Contact | None
         """
@@ -151,8 +151,8 @@ async def find_by_name(lastname: str, cur_user: User = Depends(auth.get_current_
        :type lastname: str
        :param cur_user: current user - contact owner
        :type cur_user: User
-       :param db: current session to db
-       :type db: Session
+       :param db: current async session to db
+        :type db: AsyncSession
        :return: Contact | None
        :rtype: Contact | None
        """
@@ -171,8 +171,8 @@ async def find_by_name(email: str, cur_user: User = Depends(auth.get_current_use
         :type email: str
         :param cur_user: current user - contact owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact | None
         :rtype: Contact | None
         """
@@ -189,8 +189,8 @@ async def get_all(cur_user: User = Depends(auth.get_current_user), db: AsyncSess
 
         :param cur_user: current user - contact owner
         :type cur_user: User
-        :param db: current session to db
-        :type db: Session
+        :param db: current async session to db
+        :type db: AsyncSession
         :return: Contact
         :rtype: List
         """

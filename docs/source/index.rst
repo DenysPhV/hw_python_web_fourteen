@@ -20,7 +20,7 @@ HW fourteen API main
 
 HW fourteen config Settings
 ===========================
-.. automodule:: src.conf.setting
+.. automodule:: src.conf.config
   :members:
   :undoc-members:
   :show-inheritance:
@@ -91,7 +91,6 @@ HW fourteen API service Email
   :members:
   :undoc-members:
   :show-inheritance:
-
 
 
 Indices and tables
