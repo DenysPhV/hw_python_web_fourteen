@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     cloudinary_api_secret: str = "api secret"
 
     class Config:
-        env_file = "*.env"
+        env_file = ".env"
         env_file_encoding = "utf-8"
 
 

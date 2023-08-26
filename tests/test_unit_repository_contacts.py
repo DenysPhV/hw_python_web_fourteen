@@ -1,6 +1,8 @@
 import unittest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, AsyncMock
 from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from src.database.models import User, Contact
 from src.schemas import ContactModel
 from src.repository.contacts import (
@@ -16,13 +18,15 @@ from src.repository.contacts import (
 )
 import datetime
 
-class TestContacts(unittest.IsolatedAsyncioTestCase):
+
+class TestAsyncContacts(unittest.IsolatedAsyncioTestCase):
 
     def setUp(self):
-        self.session = MagicMock(spec=Session)
+        self.session = AsyncMock(spec=AsyncSession)
         self.user = User(id=1)
 
     async def test_create(self):
+        print("Creating contact...")
         body = ContactModel(
             first_name="test",
             last_name="last",
@@ -35,8 +39,6 @@ class TestContacts(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.last_name, body.last_name)
         self.assertEqual(result.email, body.email)
         self.assertIsNotNone(result.id)  # Check that id is not None
-
-        print("Creating contact...")
 
     async def test_get_all(self):
         contacts = [Contact()]
@@ -83,6 +85,7 @@ class TestContacts(unittest.IsolatedAsyncioTestCase):
         self.assertIsNone(result)
 
     # ... (other test methods)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -69,7 +69,7 @@ async def update_token(user: User, token: str | None, db: AsyncSession) -> None:
     await db.commit()
 
 
-async def update_avatar(email, url: str, db: AsyncSession) -> User:
+async def update_avatar(email: str, url: str, db: AsyncSession) -> User:
     """
         Update user's avatar
 

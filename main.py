@@ -39,6 +39,8 @@ def healthchecker(db: Session = Depends(get_db)):
         raise HTTPException(status_code=500, detail="Error connecting to the database")
 
 
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
+
 app.include_router(contacts.router, prefix='/api')
 app.include_router(contacts.finder, prefix='/api')
 app.include_router(notes.router, prefix='/api')
@@ -51,8 +53,6 @@ app.add_middleware(CORSMiddleware,
                    allow_methods=["*"],
                    allow_headers=["*"],
                    )
-
-app.mount("/static", StaticFiles(directory="src/static"), name="static")
 
 if __name__ == '__main__':
     uvicorn.run("main:app", host="localhost", reload=True, log_level="info")

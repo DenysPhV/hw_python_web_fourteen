@@ -8,7 +8,6 @@ from sqlalchemy.orm import sessionmaker
 from main import app
 from src.database.models import Base
 from src.database.connector import get_db
-from src.services.auth import auth_service
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 
@@ -46,7 +45,7 @@ def client(session):
 
 @pytest.fixture(scope="module")
 def user():
-    return {"name": "fourteen", "email": "fourteen@example.com", "password": "58796"}
+    return {"username": "deadpool", "email": "deadpool@example.com", "password": "123456789"}
 
 
 @pytest.fixture(scope="function")

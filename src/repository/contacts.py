@@ -23,8 +23,8 @@ async def create(body: ContactModel, user: User, db: AsyncSession) -> Contact:
         """
     new_contact = Contact(**body.model_dump(), user_id=user.id)
     db.add(new_contact)
-    db.commit()
-    db.refresh(new_contact)
+    await db.commit()
+    await db.refresh(new_contact)
     return new_contact
 
 
@@ -85,7 +85,7 @@ async def update(contact_id, body: ContactModel, user: User, db: AsyncSession):
         contact.last_name = body.last_name
         contact.email = body.email
         contact.birthday = body.birthday
-        db.commit()
+        await db.commit()
     return contact
 
 
@@ -104,8 +104,8 @@ async def delete(contact_id, user: User, db: AsyncSession):
         """
     contact = await get_one(contact_id, user, db)
     if contact:
-        db.delete(contact)
-        db.commit()
+        await db.delete(contact)
+        await db.commit()
     return contact
 
 
